@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn esbuild src/index.ts --platform=node --bundle --packages=external --outfile=dist/index.js --format=esm",
+    "build": "yarn esbuild src/index.ts --platform=node --bundle --packages=external --outfile=dist/index.js --format=esm && yarn build:types",
     "build:types": "yarn tsc -d --declarationDir dist --emitDeclarationOnly",
     "clean": "rimraf dist"
   },
