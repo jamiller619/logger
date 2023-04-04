@@ -1,0 +1,14 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "editorconfig": true,
+  "importOrder": ["^node:(.*)$", "<THIRD_PARTY_MODULES>", "^~/(.*)$", "^[./]"],
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "topLevelAwait",
+    "importAssertions"
+  ]
+}

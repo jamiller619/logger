@@ -1,0 +1,35 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn esbuild src/index.ts --platform=node --bundle --packages=external --outfile=dist/index.js --format=esm",
+    "build:types": "yarn tsc -d --declarationDir dist --emitDeclarationOnly",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "pretty-ms": "^8.0.0",
+    "serialize-error": "^11.0.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "esbuild": "^0.17.15",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.3"
+  }
+}
