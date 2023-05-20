@@ -12,7 +12,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean"
+    "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "chalk": "4.1.2",
