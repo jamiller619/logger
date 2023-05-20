@@ -1,6 +1,6 @@
 {
   "name": "logger",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
-    "prepare": "echo running prepare!! && npm run build"
+    "prepare": "npm run build"
   },
   "files": [
     "dist/*"
