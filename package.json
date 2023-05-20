@@ -1,14 +1,18 @@
 {
   "name": "logger",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "node": "./dist/index.cjs",
-    "default": "./dist/index.js"
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
     "prepare": "npm run build"
@@ -16,10 +20,7 @@
   "files": [
     "dist/*"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jamiller619/logger"
-  },
+  "repository": "https://github.com/jamiller619/logger",
   "dependencies": {
     "chalk": "4.1.2",
     "pretty-ms": "7.0.1",
