@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
-    "prepare": "npm run build"
+    "prepare": "echo running prepare!! && npm run build"
   },
   "files": [
     "dist/*"
