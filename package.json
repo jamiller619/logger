@@ -12,6 +12,11 @@
     "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
     "prepare": "yarn build"
   },
+  "files": [
+    "dist/index.cjs",
+    "dist/index.d.ts",
+    "dist/index.js"
+  ],
   "dependencies": {
     "chalk": "4.1.2",
     "pretty-ms": "7.0.1",
