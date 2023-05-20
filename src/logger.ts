@@ -17,41 +17,7 @@ const main = {
 type LoggerOptions = {
   file?: winston.transports.FileTransportOptions
   console?: winston.transports.ConsoleTransportOptions
-  transports: winston.transport[]
-}
-
-export const init = async (
-  { file, console, transports }: LoggerOptions = { transports: [] }
-) => {
-  if (!file?.filename) {
-    throw new Error('Filename is required!')
-  }
-
-  const fileOptions: winston.transports.FileTransportOptions = {
-    handleExceptions: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    format: winston.format.combine(timestamp, withoutColor),
-    ...file,
-  }
-
-  const consoleOptions: winston.transports.ConsoleTransportOptions = {
-    handleExceptions: true,
-    format: winston.format.combine(timestamp, withColor),
-    ...console,
-  }
-
-  main.logger = winston.createLogger({
-    levels: winston.config.npm.levels,
-    transports: [
-      new winston.transports.File(fileOptions),
-      new winston.transports.Console(consoleOptions),
-      ...transports,
-    ],
-    exitOnError: false,
-  })
-
-  await main.queue.flush()
+  transports?: winston.transport[]
 }
 
 export class Logger {
@@ -74,7 +40,7 @@ export class Logger {
 
     this.lastUpdated = now
 
-    const logit = () => {
+    function logit() {
       main.logger?.log(logEntry)
     }
 
@@ -106,4 +72,46 @@ export class Logger {
 
 export default function logger(label: string) {
   return new Logger(label)
+}
+
+/**
+ * Initializes the logger. Queues all log messages until the logger is initialized!
+ * @param filename Required. Where to save the log file.
+ * @param options Options passed directly to winston.
+ */
+logger.init = async (
+  filename: string,
+  opts: LoggerOptions | undefined = {}
+) => {
+  const fileOptions: winston.transports.FileTransportOptions = {
+    handleExceptions: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
+    format: winston.format.combine(timestamp, withoutColor),
+    ...opts.file,
+    filename,
+  }
+
+  const consoleOptions: winston.transports.ConsoleTransportOptions = {
+    handleExceptions: true,
+    format: winston.format.combine(timestamp, withColor),
+    ...opts.console,
+  }
+
+  const transports: winston.transport[] = [
+    new winston.transports.File(fileOptions),
+    new winston.transports.Console(consoleOptions),
+  ]
+
+  if (opts.transports != null) {
+    transports.push(...opts.transports)
+  }
+
+  main.logger = winston.createLogger({
+    levels: winston.config.npm.levels,
+    transports,
+    exitOnError: false,
+  })
+
+  await main.queue.flush()
 }

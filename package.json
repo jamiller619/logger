@@ -1,25 +1,18 @@
 {
   "name": "logger",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs"
-    }
+    "node": "./dist/index.cjs",
+    "default": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "run-s build:esm build:cjs build:types",
-    "build:types": "yarn tsc -d --declarationDir dist --emitDeclarationOnly",
-    "build:shared": "yarn esbuild src/index.ts --platform=node --bundle --packages=external",
-    "build:esm": "yarn build:shared --outfile=dist/esm/index.js --format=esm",
-    "build:cjs": "yarn build:shared --outfile=dist/cjs/index.cjs --format=cjs",
-    "clean": "rimraf dist"
+    "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean"
   },
   "dependencies": {
     "chalk": "4.1.2",
@@ -31,12 +24,11 @@
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
-    "esbuild": "^0.17.15",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^4.4.1",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.3"
   }
 }

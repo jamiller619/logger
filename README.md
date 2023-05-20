@@ -1,3 +1,3 @@
 # logger
 
-> The logger I use in all of my projects.
+> The logger I use for Node.js projects, based on Winston.
