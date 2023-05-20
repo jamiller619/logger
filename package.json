@@ -8,9 +8,6 @@
     "default": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "yarn tsup src/index.ts --format esm,cjs --dts --clean",
     "prepare": "yarn build"
