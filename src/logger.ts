@@ -3,7 +3,7 @@ import { Queue } from './queue'
 import { createFormatter } from './formats'
 
 const timestamp = winston.format.timestamp({
-  format: 'YYYY.MM.DD HH:mm:ss A',
+  format: 'YYYY.MM.DD hh:mm:ss A',
 })
 
 const withColor = createFormatter(true)
@@ -77,7 +77,7 @@ export default function logger(label: string) {
 /**
  * Initializes the logger. Queues all log messages until the logger is initialized!
  * @param filename Required. Where to save the log file.
- * @param options Options passed directly to winston.
+ * @param options Options, merged with defaults and passed directly to winston.
  */
 logger.init = async (
   filename: string,
