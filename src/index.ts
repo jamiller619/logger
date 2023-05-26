@@ -1,3 +1,3 @@
-export { default as default } from './logger'
+export { default as default } from './logger.js'
 
-export * from './logger'
+export * from './logger.js'

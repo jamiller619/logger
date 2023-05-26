@@ -1,6 +1,6 @@
 import * as winston from 'winston'
-import { Queue } from './queue'
-import { createFormatter } from './formats'
+import { Queue } from './queue.js'
+import { createFormatter } from './formats.js'
 
 const timestamp = winston.format.timestamp({
   format: 'YYYY.MM.DD hh:mm:ss A',
