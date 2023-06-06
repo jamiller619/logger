@@ -70,7 +70,9 @@ export const createFormatter = (useColor = false) => {
       }
     }
 
-    body.push(colorize(`+${pms(diff, { compact: true })}`, chalk.dim))
+    if (Number.isFinite(diff)) {
+      body.push(colorize(`+${pms(diff, { compact: true })}`, chalk.dim))
+    }
 
     return body.join(' ')
   }
