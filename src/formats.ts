@@ -46,7 +46,7 @@ export const createFormatter = (useColor = false) => {
     const header: string[] = [
       colorize(timestamp, chalk.dim),
       colorize(level.toUpperCase(), levelColor),
-      colorize(`[${label}]`, chalk.white),
+      colorize(`[${label ?? '?????????'}]`, chalk.white),
       colorize(`(${process.pid}):`, chalk.dim),
     ]
 
