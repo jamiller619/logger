@@ -4,6 +4,7 @@ import process from 'node:process'
 import util from 'node:util'
 import pms from 'pretty-ms'
 import { serializeError } from 'serialize-error'
+import columnify from 'columnify'
 
 const { levels } = winston.config.npm
 
@@ -74,7 +75,7 @@ export const createFormatter = (useColor = false) => {
       body.push(colorize(`+${pms(diff, { compact: true })}`, chalk.dim))
     }
 
-    return body.join(' ')
+    return columnify(body)
   }
 
   return winston.format.printf(

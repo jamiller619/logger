@@ -5,9 +5,13 @@ export class Queue<T extends () => void | Promise<void>> {
     while (this.items.length > 0) {
       await this.items.shift()?.()
     }
+
+    return this
   }
 
   push(...args: T[]) {
-    return this.items.push(...args)
+    this.items.push(...args)
+
+    return this
   }
 }
