@@ -75,7 +75,7 @@ export const createFormatter = (useColor = false) => {
       body.push(colorize(`+${pms(diff, { compact: true })}`, chalk.dim))
     }
 
-    return columnify(body)
+    return body.join(' ')
   }
 
   return winston.format.printf(
